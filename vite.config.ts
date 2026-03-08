@@ -8,7 +8,7 @@ export default defineConfig({
     host: '0.0.0.0',
   },
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/buguibgib/' : '/',
+  base: '/buguibgiblog/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

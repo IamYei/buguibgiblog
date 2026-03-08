@@ -18,7 +18,7 @@ export const Comments: React.FC = () => {
           {language === 'zh' ? '留下你的足迹，或者和大家打个招呼吧 ✨' : 'Leave your footprints or say hi ✨'}
         </p>
       </div>
-      
+
       <div className="glass-panel p-6 sm:p-10 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-glass dark:shadow-glass-dark relative overflow-hidden">
         {/* Glow effect behind comments */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-[80px] -z-10 mix-blend-screen" />
@@ -26,11 +26,11 @@ export const Comments: React.FC = () => {
 
         <Giscus
           id="comments"
-          repo="[YOUR_GITHUB_USERNAME]/[YOUR_GITHUB_REPO]" // TODO: Replace with your actual GitHub repo!
-          repoId="[YOUR_REPO_ID]" // TODO: Replace with your actual repo ID (find it at giscus.app)
-          category="Announcements" 
-          categoryId="[YOUR_CATEGORY_ID]" // TODO: Replace with your actual category ID
-          mapping="title"
+          repo="IamYei/buguibgiblog"
+          repoId="R_kgDORhhJiA"
+          category="Announcements"
+          categoryId="DIC_kwDORhhJiM4C38sz"
+          mapping="pathname"
           term="Welcome to my blog!"
           reactionsEnabled="1"
           emitMetadata="0"
