@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-[#111111] font-sans antialiased overflow-x-hidden transition-colors duration-700;
+  }
+  
+  /* Dark mode global overrides */
+  html.dark body {
+    @apply bg-[#050505] text-[#ededed];
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 dark:bg-gray-800 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-300 dark:bg-gray-700;
+  }
+}
+
+@layer components {
+  /* Liquid Glass Panels */
+  .glass-panel {
+    @apply bg-white/60 dark:bg-black/50 backdrop-blur-xl border border-white/40 dark:border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  }
+  .dark .glass-panel {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-panel-hover {
+    @apply hover:bg-white/80 dark:hover:bg-black/70 hover:-translate-y-2;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .glass-panel-hover:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+  .dark .glass-panel-hover:hover {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  }
+
+  /* Glowing Glass Buttons */
+  .glass-button {
+    @apply bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10 shadow-sm;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .glass-button:hover {
+    @apply hover:-translate-y-1 bg-white/60 dark:bg-white/10;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+  .dark .glass-button:hover {
+    box-shadow: 0 0 20px rgba(125, 211, 252, 0.3);
+  }
+
+  .page-enter {
+    animation: fade-in-up-anim 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes fade-in-up-anim {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  /* Markdown Styles with Glassy tweaks */
+  .markdown-body {
+    @apply font-sans leading-relaxed text-gray-700 dark:text-gray-300 text-lg;
+  }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+    @apply font-bold text-black dark:text-white mt-12 mb-6 tracking-tight;
+    font-family: 'Quicksand', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .markdown-body h1 { @apply text-4xl lg:text-5xl; }
+  .markdown-body h2 { @apply text-3xl lg:text-4xl border-b border-gray-100 dark:border-gray-800 pb-4; }
+  .markdown-body h3 { @apply text-2xl lg:text-3xl; }
+  .markdown-body p { @apply mb-6; }
+  .markdown-body a {
+    @apply text-blue-600 dark:text-blue-400 font-medium decoration-2 underline-offset-4 hover:opacity-70 transition-opacity;
+  }
+  .markdown-body ul { @apply list-disc pl-6 mb-6 space-y-2; }
+  .markdown-body ol { @apply list-decimal pl-6 mb-6 space-y-2; }
+  .markdown-body li { @apply marker:text-gray-400 dark:marker:text-gray-600; }
+  .markdown-body blockquote {
+    @apply glass-panel px-6 py-4 my-8 border-l-4 border-l-black dark:border-l-white text-xl italic rounded-r-2xl;
+    font-family: 'Quicksand', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .markdown-body code {
+    @apply bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm text-pink-500 dark:text-pink-400 font-mono text-sm px-1.5 py-0.5 rounded-md;
+  }
+  .markdown-body pre {
+    @apply glass-panel p-6 rounded-2xl overflow-x-auto mb-8 font-mono text-sm leading-snug;
+  }
+  .markdown-body pre code {
+    @apply bg-transparent text-gray-800 dark:text-gray-200 p-0 text-sm border-0;
+  }
+  .markdown-body img {
+    @apply w-full rounded-2xl glass-panel my-8;
+  }
+  .markdown-body table {
+    @apply w-full mb-8 text-left border-collapse glass-panel overflow-hidden;
+  }
+  .markdown-body th {
+    @apply bg-gray-50/50 dark:bg-gray-800/50 font-bold p-4 border-b border-white/20 dark:border-white/10;
+  }
+  .markdown-body td {
+    @apply p-4 border-b border-white/20 dark:border-white/10;
+  }
+}
+
+/* Background Atmosphere Blobs */
+.bg-atmosphere {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.blob-1, .blob-2, .blob-3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: blob 10s infinite alternate;
+}
+
+.dark .blob-1 { background: rgba(56, 189, 248, 0.15); }
+.dark .blob-2 { background: rgba(168, 85, 247, 0.15); }
+.dark .blob-3 { background: rgba(236, 72, 153, 0.15); }
+
+.blob-1 {
+  background: rgba(186, 230, 253, 0.6);
+  width: 600px; height: 600px;
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  background: rgba(233, 213, 255, 0.6);
+  width: 500px; height: 500px;
+  top: 20%; right: -50px;
+  animation-delay: 2s;
+}
+
+.blob-3 {
+  background: rgba(251, 207, 232, 0.6);
+  width: 700px; height: 700px;
+  bottom: -200px; left: 20%;
+  animation-delay: 4s;
+}
